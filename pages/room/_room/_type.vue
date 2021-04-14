@@ -15,7 +15,9 @@
     <content class="mt-2 mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
       <section class="block shadow rounded-sm bg-white p-3">
         <div class="flex flex-row justify-between items-baseline mb-2 border-b border-gray-300">
-          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">Hlavní osvětlení</h3>
+          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
+            Hlavní osvětlení
+          </h3>
           <Toggle />
         </div>
         <form>
@@ -35,7 +37,9 @@
       </section>
       <section class="block shadow rounded-sm bg-white p-3">
         <div class="flex flex-row justify-between items-baseline mb-2 border-b border-gray-300">
-          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">Postel - Ellenka</h3>
+          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
+            Postel - Ellenka
+          </h3>
           <Toggle />
         </div>
         <form>
@@ -63,7 +67,9 @@
       </section>
       <section class="block shadow rounded-sm bg-white p-3">
         <div class="flex flex-row justify-between items-baseline mb-2 border-b border-gray-300">
-          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">Postel - Ashleynka</h3>
+          <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
+            Postel - Ashleynka
+          </h3>
           <Toggle />
         </div>
         <form>
@@ -92,11 +98,3 @@
     </content>
   </div>
 </template>
-
-<script lang="ts">
-import Vue from "vue";
-import Switch from "~/components/Toggle.vue";
-
-export default Vue.extend({
-  components: { Switch },});
-</script>

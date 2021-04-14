@@ -19,11 +19,11 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true,
+      required: true
     },
     value: {
       type: String,
-      default: null,
+      default: null
     }
   }
 }

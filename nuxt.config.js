@@ -46,7 +46,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://google-fonts.nuxtjs.org/
-    '@nuxtjs/google-fonts',
+    '@nuxtjs/google-fonts'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -70,11 +70,11 @@ export default {
   fontawesome: {
     component: 'fa',
     icons: {
-      solid: [ 'faHome', 'faCouch', 'faHeart', 'faBell', 'faArrowLeft', 'faThermometerHalf' ],
-      regular: [ ],
-      light: [ ],
-      duotone: [ ],
-      brands: [ ],
+      solid: ['faHome', 'faCouch', 'faHeart', 'faBell', 'faArrowLeft', 'faThermometerHalf'],
+      regular: [],
+      light: [],
+      duotone: [],
+      brands: []
     }
   },
 

@@ -26,7 +26,7 @@ export default {
   },
   props: ['name', 'label', 'checked', 'value', 'color'],
   methods: {
-    change(el) {
+    change (el) {
       if (Array.isArray(this.checked)) {
         const checked = [].concat(this.checked)
         const value = this.value
@@ -42,14 +42,14 @@ export default {
 
       this.$emit('change', !!el.checked)
     },
-    reflectState(state) {
+    reflectState (state) {
       if (Array.isArray(state)) {
         return state.includes(this.$props.value)
       }
 
       return !!state
-    },
-  },
+    }
+  }
 }
 </script>
 

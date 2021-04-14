@@ -8,9 +8,11 @@
       </div>
       <div class="text-center w-full">
         <div class="inline-block bg-gray-300 rounded-full p-3">
-          <img src="~/assets/images/double-bed.png" class="w-8 h-8" />
+          <img src="~/assets/images/double-bed.png" class="w-8 h-8">
         </div>
-        <h2 class="mt-2 text-lg font-extrabold tracking-wide capitalize">Ložnice</h2>
+        <h2 class="mt-2 text-lg font-extrabold tracking-wide capitalize">
+          Ložnice
+        </h2>
       </div>
     </div>
     <content>
@@ -35,14 +37,14 @@
         >
           <nuxt-link to="light" append class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/lightbulb.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/lightbulb.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Osvětlení</span>
               <span class="block text-xs text-gray-500">1 svítidlo</span>
             </div>
           </nuxt-link>
           <nuxt-link to="heater" append class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/heater.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/heater.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Vytápění</span>
               <span class="block text-xs text-gray-500">Denní režim</span>
             </div>
@@ -52,7 +54,7 @@
               <img
                 src="~/assets/images/motion-sensor.png"
                 class="mx-auto mb-2"
-              />
+              >
               <span class="block font-bold text-gray-700">Senzory</span>
               <span class="block text-xs text-gray-500">6 senzorů</span>
             </div>
@@ -64,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
-export default Vue.extend({});
+export default Vue.extend({})
 </script>

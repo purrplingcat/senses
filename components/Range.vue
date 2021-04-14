@@ -7,7 +7,7 @@
     max="100"
     step="1"
     value="15"
-  />
+  >
 </template>
 
 <script lang="ts">
@@ -17,11 +17,11 @@ export default Vue.extend({
   props: {
     color: {
       type: String,
-      default: '',
+      default: ''
     },
     value: {
       type: String,
-      default: null,
+      default: null
     }
   }
 })

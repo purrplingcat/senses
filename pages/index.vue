@@ -7,32 +7,34 @@
     </div>
     <content>
       <section class="mb-6">
-        <h3 class="font-bold text-gray-800 text-lg pb-2 mb-4">Místnosti</h3>
+        <h3 class="font-bold text-gray-800 text-lg pb-2 mb-4">
+          Místnosti
+        </h3>
         <div class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
           <nuxt-link to="/room/livingroom" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/couch.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/couch.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Obývák</span>
               <span class="block text-xs text-gray-500">2 zařízení</span>
             </div>
           </nuxt-link>
           <nuxt-link to="/room/bedroom" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/double-bed.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/double-bed.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Ložnice</span>
               <span class="block text-xs text-gray-500">3 zařízení</span>
             </div>
           </nuxt-link>
           <nuxt-link to="/room/kitchen" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/kitchen.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/kitchen.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Kuchyně</span>
               <span class="block text-xs text-gray-500">3 zařízení</span>
             </div>
           </nuxt-link>
           <nuxt-link to="/room/bathroom" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/bathroom.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/bathroom.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Koupelna</span>
               <span class="block text-xs text-gray-500">3 zařízení</span>
             </div>
@@ -40,23 +42,25 @@
         </div>
       </section>
       <section class="mb-6">
-        <h3 class="font-bold text-gray-800 text-lg pb-2 mb-4">Kamery</h3>
+        <h3 class="font-bold text-gray-800 text-lg pb-2 mb-4">
+          Kamery
+        </h3>
         <div class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
           <div class="shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/cctv.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/cctv.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Hlavní vchod</span>
             </div>
           </div>
           <div class="shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/cctv.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/cctv.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Krámek</span>
             </div>
           </div>
           <div class="shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/cctv.png" class="mx-auto mb-2" />
+              <img src="~/assets/images/cctv.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Dolní garáž</span>
             </div>
           </div>
