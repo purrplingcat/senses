@@ -1,6 +1,6 @@
 <template>
   <div class="fixed z-40 left-0 top-0 w-full h-screen flex flex-col bg-gray-900 bg-opacity-80">
-    <div class="absolute z-0 top-0 left-0 w-full h-screen" @click="$emit('dismiss')"></div>
+    <div class="absolute z-0 top-0 left-0 w-full h-screen" @click="$emit('dismiss')" />
     <content class="flex z-10 flex-col mt-auto shadow h-3/4 overflow-y-hidden rounded-t-2xl bg-white mx-0 lg:mx-auto lg:w-3/4 xl:w-1/2">
       <div
         class="flex flex-row justify-between mt-3 px-3 items-baseline border-b border-gray-300"

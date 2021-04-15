@@ -70,8 +70,17 @@ export default {
   fontawesome: {
     component: 'fa',
     icons: {
-      solid: ['faHome', 'faCouch', 'faHeart', 'faBell', 'faArrowLeft', 'faThermometerHalf'],
-      regular: [],
+      solid: [
+        'faHome',
+        'faCouch',
+        'faHeart',
+        'faBell',
+        'faArrowLeft',
+        'faThermometerHalf',
+        'faTemperatureHigh',
+        'faPlug'
+      ],
+      regular: ['faLightbulb'],
       light: [],
       duotone: [],
       brands: []
