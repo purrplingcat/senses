@@ -35,13 +35,13 @@
         <div
           class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2"
         >
-          <nuxt-link to="light" append class="block shadow rounded-sm bg-white p-3">
+          <button @click="showForm" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
               <img src="~/assets/images/lightbulb.png" class="mx-auto mb-2">
               <span class="block font-bold text-gray-700">Osvětlení</span>
-              <span class="block text-xs text-gray-500">1 svítidlo</span>
+              <span class="block text-xs text-gray-500">Stropní svítidlo</span>
             </div>
-          </nuxt-link>
+          </button>
           <nuxt-link to="heater" append class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
               <img src="~/assets/images/heater.png" class="mx-auto mb-2">
@@ -49,6 +49,20 @@
               <span class="block text-xs text-gray-500">Denní režim</span>
             </div>
           </nuxt-link>
+          <button @click="showForm" class="block shadow rounded-sm bg-white p-3">
+            <div class="text-center leading-relaxed">
+              <img src="~/assets/images/table-lamp.png" class="mx-auto mb-2">
+              <span class="block font-bold text-gray-700">Lampička vpravo</span>
+              <span class="block text-xs text-gray-500">Ashleyna lampička</span>
+            </div>
+          </button>
+          <button @click="showForm" class="block shadow rounded-sm bg-white p-3">
+            <div class="text-center leading-relaxed">
+              <img src="~/assets/images/table-lamp.png" class="mx-auto mb-2">
+              <span class="block font-bold text-gray-700">Lampička vlevo</span>
+              <span class="block text-xs text-gray-500">Ellenina lampička</span>
+            </div>
+          </button>
           <nuxt-link to="sensor" append class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
               <img
@@ -62,11 +76,23 @@
         </div>
       </section>
     </content>
+    <ModalForm v-if="formVisible" @dismiss="formVisible = false" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      formVisible: false,
+    }
+  },
+  methods: {
+    showForm() {
+      this.formVisible = true;
+    }
+  }
+})
 </script>
