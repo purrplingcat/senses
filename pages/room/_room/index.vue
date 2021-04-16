@@ -35,11 +35,14 @@
               <fa :icon="['far', 'lightbulb']" class="mr-1" /> Vypnuto
             </span>
             <span class="mr-4" title="Vytápění">
-              <fa :icon="['fas', 'temperature-high']" class="mr-1" /> Vypnuto
+              <fa :icon="['fas', 'temperature-high']" class="mr-1" /> Vytápení
               (Požad. teplota 22 °C)
             </span>
             <span class="mr-4" title="Počet chytrých zařízení">
-              <fa :icon="['fas', 'plug']" class="mr-1" /> 8 zařízení
+              <fa :icon="['fas', 'plug']" class="mr-1" /> 4 zařízení
+            </span>
+            <span class="mr-4" title="Počet chytrých zařízení">
+              <fa :icon="['far', 'eye']" class="mr-1" /> 2 sensory
             </span>
           </div>
         </div>

@@ -85,7 +85,7 @@ export default {
         'faQuestion',
         'faEllipsisV'
       ],
-      regular: ['faLightbulb'],
+      regular: ['faLightbulb', 'faEye'],
       light: [],
       duotone: [],
       brands: []
