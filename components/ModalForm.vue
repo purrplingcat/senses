@@ -6,29 +6,14 @@
         class="flex flex-row justify-between mt-3 px-3 items-baseline border-b border-gray-300"
       >
         <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
-          Hlavní osvětlení
+          {{ title }}
         </h3>
         <Toggle />
       </div>
-      <form class="px-6 py-3 overflow-y-auto mb-auto">
-        <div class="grid grid-cols-3 gap-1 items-center py-3">
-          <label class="text-sm text-gray-600 font-semibold">Jas</label>
-          <Range class="col-span-2" />
-        </div>
-        <div class="grid grid-cols-3 gap-1 items-center py-3">
-          <label class="text-sm text-gray-600 font-semibold">Teplota</label>
-          <Range class="col-span-2" />
-        </div>
-        <div class="grid grid-cols-3 gap-1 items-center py-3">
-          <label class="text-sm text-gray-600 font-semibold">Režim</label>
-          <RadioButtons
-            class="col-span-2"
-            :options="{ c: 'Ráno', a: 'Den', b: 'Noc' }"
-            value="a"
-          />
-        </div>
+      <form class="flex flex-col h-5/6 px-6 py-3 overflow-y-auto mb-auto">
+        <slot />
       </form>
-      <div class="mt-auto">
+      <div>
         <button
           class="bg-purple-700 w-full px-6 py-4 text-white text-lg shadow-lg hover:bg-purple-900"
           @click="$emit('dismiss')"
@@ -39,3 +24,11 @@
     </content>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    title: String
+  }
+}
+</script>

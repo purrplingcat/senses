@@ -8,10 +8,14 @@
           </nuxt-link>
         </div>
         <div class="text-center w-full flex flex-col">
-          <div class="mx-auto flex flex-row items-center bg-purple-200 bg-opacity-30 rounded-full p-3">
+          <div
+            class="mx-auto flex flex-row items-center bg-purple-200 bg-opacity-30 rounded-full p-3"
+          >
             <img src="~/assets/images/double-bed.png" class="w-8 h-8">
           </div>
-          <h2 class="mt-2 text-lg text-purple-100 font-bold tracking-wider capitalize">
+          <h2
+            class="mt-2 text-lg text-purple-100 font-bold tracking-wider capitalize"
+          >
             Ložnice
           </h2>
         </div>
@@ -31,7 +35,8 @@
               <fa :icon="['far', 'lightbulb']" class="mr-1" /> Vypnuto
             </span>
             <span class="mr-4" title="Vytápění">
-              <fa :icon="['fas', 'temperature-high']" class="mr-1" /> Vypnuto (Požad. teplota 22 °C)
+              <fa :icon="['fas', 'temperature-high']" class="mr-1" /> Vypnuto
+              (Požad. teplota 22 °C)
             </span>
             <span class="mr-4" title="Počet chytrých zařízení">
               <fa :icon="['fas', 'plug']" class="mr-1" /> 8 zařízení
@@ -40,14 +45,22 @@
         </div>
       </section>
       <section class="-mx-6 mb-8 border-t border-gray-300">
-        <div class="flex flex-row flex-nowrap w-full overflow-x-auto bg-gray-50 text-sm font-light">
-          <button class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 font-bold border-purple-900 text-gray-800 tracking-wider">
+        <div
+          class="flex flex-row flex-nowrap w-full overflow-x-auto bg-gray-50 text-sm font-light"
+        >
+          <button
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 font-bold border-purple-900 text-gray-800 tracking-wider"
+          >
             Zařízení
           </button>
-          <button class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider">
+          <button
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider"
+          >
             Nálady
           </button>
-          <button class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider">
+          <button
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider"
+          >
             Senzory
           </button>
         </div>
@@ -61,9 +74,9 @@
           >
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm"
+              @click="showForm('osvetleni-loznice', 'light')"
             >
-              <div class="relative text-center leading-relaxed">
+              <div class="relative text-center leading-relaxed h-full w-full">
                 <div class="absolute top-0 right-0" @click.stop="">
                   <Toggle />
                 </div>
@@ -77,9 +90,9 @@
             <button
               append
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm"
+              @click="showForm('topeni-loznice', 'heater')"
             >
-              <div class="relative text-center leading-relaxed">
+              <div class="relative text-center leading-relaxed h-full w-full">
                 <div class="absolute top-0 right-0" @click.stop="">
                   <Toggle />
                 </div>
@@ -90,9 +103,9 @@
             </button>
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm"
+              @click="showForm('lampa-ashley', 'lamp')"
             >
-              <div class="relative text-center leading-relaxed">
+              <div class="relative text-center leading-relaxed h-full w-full">
                 <div class="absolute top-0 right-0" @click.stop="">
                   <Toggle />
                 </div>
@@ -110,9 +123,9 @@
             </button>
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm"
+              @click="showForm('lampa-ellen', 'lamp')"
             >
-              <div class="relative text-center leading-relaxed">
+              <div class="relative text-center leading-relaxed h-full w-full">
                 <div class="absolute top-0 right-0" @click.stop="">
                   <Toggle />
                 </div>
@@ -131,24 +144,28 @@
           </div>
         </section>
       </content>
-      <ModalForm v-if="formVisible" @dismiss="formVisible = false" />
+      <ModalForm v-if="formVisible" :title="deviceId" @dismiss="formVisible = false">
+        <DeviceForm :which-form="whichForm" />
+      </ModalForm>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+<script>
+export default {
   data () {
     return {
-      formVisible: false
+      formVisible: false,
+      deviceId: '',
+      whichForm: 'Light'
     }
   },
   methods: {
-    showForm () {
+    showForm (deviceId, deviceType) {
+      this.deviceId = deviceId
+      this.whichForm = deviceType
       this.formVisible = true
     }
   }
-})
+}
 </script>

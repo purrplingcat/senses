@@ -1,12 +1,17 @@
 <template>
-  <nav id="navigation" class="bg-white w-full overflow-x-auto shadow border-gray-200 border-solid border-t">
-    <div class="text-gray-500 flex flex-row justify-items-center justify-center">
+  <nav
+    id="navigation"
+    class="flex flex-row flex-nowrap bg-white w-full overflow-x-auto shadow border-gray-200 border-solid border-t"
+  >
+    <div class="text-gray-500 flex flex-row mx-auto">
       <div>
         <nuxt-link to="/" class="block px-6 py-3 text-center">
           <div class="text-2xl">
             <fa icon="home" />
           </div>
-          <div class="hidden xs:block text-xs leading-relaxed tracking-widest capitalize">
+          <div
+            class="hidden xs:block text-xs leading-relaxed tracking-widest capitalize"
+          >
             Můj dům
           </div>
         </nuxt-link>
@@ -16,7 +21,9 @@
           <div class="text-2xl">
             <fa icon="couch" />
           </div>
-          <div class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize">
+          <div
+            class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize"
+          >
             Nálady
           </div>
         </nuxt-link>
@@ -26,7 +33,9 @@
           <div class="text-2xl">
             <fa icon="heart" />
           </div>
-          <div class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize">
+          <div
+            class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize"
+          >
             Oblíbené
           </div>
         </nuxt-link>
@@ -36,7 +45,9 @@
           <div class="text-2xl">
             <fa icon="bell" />
           </div>
-          <div class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize">
+          <div
+            class="hidden xs:block text-xs leading-relaxed tracking-wide capitalize"
+          >
             Oznámení
           </div>
         </nuxt-link>

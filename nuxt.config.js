@@ -55,7 +55,8 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      name: 'Senses',
+      lang: 'cs'
     }
   },
 
@@ -78,7 +79,8 @@ export default {
         'faArrowLeft',
         'faThermometerHalf',
         'faTemperatureHigh',
-        'faPlug'
+        'faPlug',
+        'faQuestion'
       ],
       regular: ['faLightbulb'],
       light: [],
