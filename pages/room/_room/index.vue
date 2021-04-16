@@ -1,6 +1,6 @@
 <template>
   <div role="wrapper">
-    <header class="bg-gradient-to-r from-purple-700 to-indigo-800 px-6 shadow-lg">
+    <header class="bg-gradient-to-r from-purple-700 via-purple-800 to-indigo-800 px-6 shadow-lg">
       <section role="heading" class="pt-6 flex flex-row flex-nowrap">
         <div class="text-2xl">
           <nuxt-link to="/" class="text-gray-200">
@@ -91,7 +91,7 @@
               </div>
             </button>
             <button
-              class="block shadow rounded-sm bg-gradient-to-r from-purple-700 to-indigo-800 p-3"
+              class="block shadow rounded-sm bg-gradient-to-r from-purple-700 via-purple-800 to-indigo-800 p-3"
               @click="alert"
             >
               <div class="text-center leading-relaxed h-full w-full">

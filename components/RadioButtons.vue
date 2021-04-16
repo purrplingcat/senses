@@ -44,12 +44,12 @@ export default {
   }
 
   &.active {
-    @apply border-purple-600 bg-purple-600 shadow-inner;
+    @apply border-purple-700 bg-purple-700 shadow-inner;
     @apply text-white font-semibold;
 
     &:hover,
     &:focus {
-      @apply bg-purple-700 border-purple-700;
+      @apply bg-purple-800 border-purple-900;
     }
   }
 }
