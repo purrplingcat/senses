@@ -74,11 +74,14 @@
           >
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm('osvetleni-loznice', 'light')"
+              @click="alert"
             >
-              <div class="relative text-center leading-relaxed h-full w-full">
-                <div class="absolute top-0 right-0" @click.stop="">
-                  <Toggle />
+              <div class="text-center leading-relaxed h-full w-full">
+                <div class="w-full flex flex-row flex-nowrap items-center -mt-1 -mb-2">
+                  <span class="uppercase tracking-wide text-xs text-gray-300">Off</span>
+                  <button class="ml-auto text-gray-300" @click.stop="showForm('osvetleni-loznice', 'light')">
+                    <fa icon="ellipsis-v" />
+                  </button>
                 </div>
                 <img src="~/assets/images/lightbulb.png" class="mx-auto mb-2">
                 <span class="block font-bold text-gray-700">Osvětlení</span>
@@ -88,26 +91,31 @@
               </div>
             </button>
             <button
-              append
-              class="block shadow rounded-sm bg-white p-3"
-              @click="showForm('topeni-loznice', 'heater')"
+              class="block shadow rounded-sm bg-gradient-to-r from-purple-700 to-indigo-800 p-3"
+              @click="alert"
             >
-              <div class="relative text-center leading-relaxed h-full w-full">
-                <div class="absolute top-0 right-0" @click.stop="">
-                  <Toggle />
+              <div class="text-center leading-relaxed h-full w-full">
+                <div class="w-full flex flex-row flex-nowrap items-center -mt-1 -mb-2">
+                  <span class="uppercase tracking-wide text-xs text-white">On</span>
+                  <button class="ml-auto text-gray-300" @click.stop="showForm('topeni-loznice', 'heater')">
+                    <fa icon="ellipsis-v" />
+                  </button>
                 </div>
                 <img src="~/assets/images/heater.png" class="mx-auto mb-2">
-                <span class="block font-bold text-gray-700">Vytápění</span>
-                <span class="block text-xs text-gray-500">Denní režim</span>
+                <span class="block font-bold text-white">Vytápění</span>
+                <span class="block text-xs text-gray-50">Denní režim</span>
               </div>
             </button>
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm('lampa-ashley', 'lamp')"
+              @click="alert"
             >
               <div class="relative text-center leading-relaxed h-full w-full">
-                <div class="absolute top-0 right-0" @click.stop="">
-                  <Toggle />
+                <div class="w-full flex flex-row flex-nowrap items-center -mt-1 -mb-2">
+                  <span class="uppercase tracking-wide text-xs text-gray-300">Off</span>
+                  <button class="ml-auto text-gray-300" @click.stop="showForm('lampa-ashley', 'lamp')">
+                    <fa icon="ellipsis-v" />
+                  </button>
                 </div>
                 <img
                   src="~/assets/images/table-lamp.png"
@@ -123,11 +131,14 @@
             </button>
             <button
               class="block shadow rounded-sm bg-white p-3"
-              @click="showForm('lampa-ellen', 'lamp')"
+              @click="alert"
             >
-              <div class="relative text-center leading-relaxed h-full w-full">
-                <div class="absolute top-0 right-0" @click.stop="">
-                  <Toggle />
+              <div class="text-center leading-relaxed h-full w-full">
+                <div class="w-full flex flex-row flex-nowrap items-center -mt-1 -mb-2">
+                  <span class="uppercase tracking-wide text-xs text-gray-300">Off</span>
+                  <button class="ml-auto text-gray-300" @click.stop="showForm('lampa-ellen', 'lamp')">
+                    <fa icon="ellipsis-v" />
+                  </button>
                 </div>
                 <img
                   src="~/assets/images/table-lamp.png"
@@ -165,6 +176,9 @@ export default {
       this.deviceId = deviceId
       this.whichForm = deviceType
       this.formVisible = true
+    },
+    alert () {
+      window.alert('baf')
     }
   }
 }

@@ -68,7 +68,7 @@ export default {
     input:checked ~ .ui-toggle__dot {
       transform: translateX(100%);
 
-      @apply bg-purple-900;
+      @apply bg-purple-800 border-purple-700;
     }
   }
 </style>

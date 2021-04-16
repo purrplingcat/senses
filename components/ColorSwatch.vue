@@ -43,12 +43,12 @@ export default {
   },
   computed: {
     dynamicClass () {
-      let cls = `bg-${this.color}`
+      let cls = `${this.color}`
 
       if (this.checked) {
-        cls += ` ring-4 ring-${this.outlineColor || this.color} ring-opacity-50`
+        cls += ` ring-4 ${this.outlineColor || this.color} ring-opacity-50`
       } else {
-        cls += ` border border-${this.borderColor || this.color}`
+        cls += ` border ${this.borderColor || this.color}`
       }
 
       return cls

@@ -1,0 +1,71 @@
+.vue-slider {
+  @apply rounded-xl bg-gray-50 border border-gray-50;
+}
+
+/* component style */
+.vue-slider-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* rail style */
+.vue-slider-rail {
+  @apply bg-gradient-to-r from-gray-200 to-gray-300 rounded-xl;
+}
+
+/* process style */
+.vue-slider-process {
+  @apply bg-purple-700 rounded-xl;
+}
+
+/* mark style */
+.vue-slider-mark {
+  z-index: 4;
+}
+
+.vue-slider-mark:first-child .vue-slider-mark-step,
+.vue-slider-mark:last-child .vue-slider-mark-step {
+  display: none;
+}
+
+.vue-slider-mark-step {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.vue-slider-mark-label {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* dot style */
+.vue-slider-dot-handle {
+  @apply w-full h-full cursor-pointer rounded-full border border-gray-200 bg-white shadow;
+}
+
+.vue-slider-dot-handle-focus {
+  @apply ring-2 ring-purple-900 ring-opacity-10;
+}
+
+.vue-slider-dot-handle-disabled {
+  @apply cursor-not-allowed bg-gray-100;
+}
+
+.vue-slider-dot-tooltip-inner {
+  @apply px-2 py-1 text-xs text-white bg-gray-900 rounded-md;
+}
+
+.vue-slider-dot-tooltip-top {
+  top: -3px !important;
+}
+
+.vue-slider-dot-tooltip-wrapper {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.vue-slider-dot-tooltip-wrapper-show {
+  opacity: 1;
+}

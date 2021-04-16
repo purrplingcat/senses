@@ -21,7 +21,9 @@
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "sass": "^1.32.8",
-    "vue-lazy-hydration": "^2.0.0-beta.4"
+    "vue-lazy-hydration": "^2.0.0-beta.4",
+    "vue-round-slider": "^1.0.1",
+    "vue-slider-component": "^3.2.11"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",

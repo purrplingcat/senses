@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="grid grid-cols-3 gap-1 items-center py-3">
-      <label class="text-sm text-gray-600 font-semibold">Jas</label>
-      <Range class="col-span-2" />
+    <div class="flex flex-col w-full py-3">
+      <label class="text-sm text-gray-600 font-semibold mb-1">Jas</label>
+      <slider height="0.75rem" dot-size="24" class="col-span-2" :contained="true" />
     </div>
-    <div class="grid grid-cols-3 gap-1 items-center py-3">
-      <label class="text-sm text-gray-600 font-semibold">Teplota</label>
-      <Range class="col-span-2" />
+    <div class="flex flex-col w-full py-3">
+      <label class="text-sm text-gray-600 font-semibold mb-1">Teplota</label>
+      <slider height="0.75rem" dot-size="24" class="col-span-2" :contained="true" />
     </div>
-    <div class="grid grid-cols-3 gap-1 items-center py-3">
-      <label class="text-sm text-gray-600 font-semibold">Režim</label>
+    <div class="flex flex-col w-full py-3">
+      <label class="text-sm text-gray-600 font-semibold mb-1">Režim</label>
       <RadioButtons
-        class="col-span-2"
+        class="mt-2"
         :options="{ c: 'Ráno', a: 'Den', b: 'Noc' }"
         value="a"
       />

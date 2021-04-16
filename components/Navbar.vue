@@ -68,6 +68,6 @@ export default Vue.extend({
 
 <style>
 #navigation .nuxt-link-active {
-  @apply text-purple-900;
+  @apply text-purple-800;
 }
 </style>

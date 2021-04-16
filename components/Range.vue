@@ -30,14 +30,9 @@ export default Vue.extend({
 <style>
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="range"]::-webkit-slider-thumb {
-    width: 15px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 15px;
-    cursor: ew-resize;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: -405px 0 0 400px #4c1d95;
+    @apply w-4 h-4 border border-gray-300 bg-white;
+
+    box-shadow: -405px 0 0 400px #581c87;
   }
 
   input[type="range"].red::-webkit-slider-thumb {
