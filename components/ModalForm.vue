@@ -15,7 +15,7 @@
       </form>
       <div>
         <button
-          class="bg-purple-700 w-full px-6 py-4 text-white text-lg shadow-lg hover:bg-purple-900"
+          class="bg-gradient-to-r from-purple-600 to-indigo-800 w-full px-6 py-4 text-white text-lg shadow-lg hover:from-purple-700 hover:to-indigo-900"
           @click="$emit('dismiss')"
         >
           OK

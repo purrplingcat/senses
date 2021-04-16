@@ -1,6 +1,6 @@
 <template>
   <div role="wrapper">
-    <header class="bg-purple-900 px-6 shadow-lg">
+    <header class="bg-gradient-to-r from-purple-700 to-indigo-800 px-6 shadow-lg">
       <section role="heading" class="pt-6 flex flex-row flex-nowrap">
         <div class="text-2xl">
           <nuxt-link to="/" class="text-gray-200">
@@ -9,7 +9,7 @@
         </div>
         <div class="text-center w-full flex flex-col">
           <div
-            class="mx-auto flex flex-row items-center bg-purple-200 bg-opacity-30 rounded-full p-3"
+            class="mx-auto flex flex-row items-center bg-purple-300 bg-opacity-20 rounded-full p-3"
           >
             <img src="~/assets/images/double-bed.png" class="w-8 h-8">
           </div>

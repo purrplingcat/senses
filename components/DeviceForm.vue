@@ -8,6 +8,7 @@ import ErrorComponent from '@/components/ErrorComponent.vue'
 
 const loaders = {
   light: () => import('@/components/form/Light.vue'),
+  lamp: () => import('@/components/form/Lamp.vue'),
   unknown: () => import('@/components/form/Unknown.vue')
 }
 

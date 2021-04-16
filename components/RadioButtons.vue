@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:flex-row flex-wrap text-gray-500 text-xs">
+  <div class="flex flex-row flex-wrap text-gray-500 text-xs -mx-0.5">
     <button
       v-for="(text, opt) in options"
       :key="opt"
@@ -33,11 +33,13 @@ export default {
 .ui-radio {
   @apply px-4 py-2 bg-white border font-semibold text-xs tracking-wide border-gray-300 rounded-sm m-0.5;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     @apply bg-gray-200;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     @apply outline-none;
   }
 
@@ -45,7 +47,8 @@ export default {
     @apply border-purple-600 bg-purple-600 shadow-inner;
     @apply text-white font-semibold;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       @apply bg-purple-700 border-purple-700;
     }
   }
