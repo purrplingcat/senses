@@ -18,6 +18,10 @@ body {
   @apply bg-gray-100;
 }
 
+html.dark body {
+  @apply bg-gray-800;
+}
+
 .custom-select {
   cursor: pointer;
   -moz-appearance: none;

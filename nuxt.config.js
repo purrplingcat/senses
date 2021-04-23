@@ -20,12 +20,14 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/slider.css'
+    '@/assets/css/slider.css',
+    '@/assets/css/svg-image.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/components'
+    '@/plugins/components',
+    '@/plugins/colormode'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +40,9 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     // https://github.com/nuxt-community/fontawesome-module
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    // https://github.com/nuxt-community/svg-sprite-module
+    '@nuxtjs/svg-sprite'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -68,6 +72,12 @@ export default {
     families: {
       Inter: true
     }
+  },
+
+  // https://github.com/nuxt-community/svg-sprite-module
+  svgSprite: {
+    input: '~/assets/sprites',
+    output: '~/assets/_gen/svg'
   },
 
   fontawesome: {

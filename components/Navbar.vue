@@ -1,7 +1,7 @@
 <template>
   <nav
     id="navigation"
-    class="flex flex-row flex-nowrap bg-white w-full overflow-x-auto shadow border-gray-200 border-solid border-t"
+    class="flex flex-row flex-nowrap bg-white dark:bg-gray-800 w-full overflow-x-auto shadow border-gray-200 dark:border-gray-700 border-solid border-t"
   >
     <div class="flex flex-row mx-auto">
       <div>
@@ -17,7 +17,7 @@
         </nuxt-link>
       </div>
       <div>
-        <nuxt-link to="/scenes" class="block px-6 py-3 text-center text-gray-400 hover:text-gray-500">
+        <nuxt-link to="/scenes" class="block px-6 py-3 text-center text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400">
           <div class="text-2xl">
             <fa icon="couch" />
           </div>
@@ -29,7 +29,7 @@
         </nuxt-link>
       </div>
       <div>
-        <nuxt-link to="/favorites" class="block px-6 py-3 text-center text-gray-400 hover:text-gray-500">
+        <nuxt-link to="/favorites" class="block px-6 py-3 text-center text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400">
           <div class="text-2xl">
             <fa icon="heart" />
           </div>
@@ -41,7 +41,7 @@
         </nuxt-link>
       </div>
       <div>
-        <nuxt-link to="/notifications" class="block px-6 py-3 text-center text-gray-400 hover:text-gray-500">
+        <nuxt-link to="/notifications" class="block px-6 py-3 text-center text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400">
           <div class="text-2xl">
             <fa icon="bell" />
           </div>
@@ -66,12 +66,22 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
 #navigation .nuxt-link-active {
   @apply text-purple-800;
 }
 
 #navigation .nuxt-link-active:hover {
   @apply text-purple-900;
+}
+
+html.dark {
+  #navigation .nuxt-link-active {
+    @apply text-purple-500;
+  }
+
+  #navigation .nuxt-link-active:hover {
+    @apply text-purple-400;
+  }
 }
 </style>

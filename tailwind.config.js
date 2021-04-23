@@ -8,6 +8,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  darkMode: 'class',
   theme: {
     colors: {
       ...defaultTheme.colors,
@@ -20,6 +21,12 @@ module.exports = {
       xs: '400px',
       ...defaultTheme.screens
     },
+    fill: theme => ({
+      red: theme('colors.red.500'),
+      green: theme('colors.green.500'),
+      blue: theme('colors.blue.500'),
+      gray: theme('colors.gray.400')
+    }),
     extend: {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans]

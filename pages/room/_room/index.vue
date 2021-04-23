@@ -47,22 +47,22 @@
           </div>
         </div>
       </section>
-      <section class="-mx-6 mb-8 border-t border-gray-300">
+      <section class="-mx-6 mb-8 border-t border-gray-300 dark:border-gray-700">
         <div
-          class="flex flex-row flex-nowrap w-full overflow-x-auto bg-gray-50 text-sm font-light"
+          class="flex flex-row flex-nowrap w-full overflow-x-auto bg-gray-50 dark:bg-gray-800 text-sm font-light"
         >
           <button
-            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 font-bold border-purple-900 text-gray-800 tracking-wider"
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 font-bold border-purple-900 dark:border-purple-700 text-gray-800 dark:text-gray-50 tracking-wider"
           >
             Zařízení
           </button>
           <button
-            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider"
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 dark:text-gray-500 tracking-wider"
           >
             Nálady
           </button>
           <button
-            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 tracking-wider"
+            class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 dark:text-gray-500 tracking-wider"
           >
             Senzory
           </button>
@@ -75,26 +75,24 @@
           <div
             class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2"
           >
-            <button
-              class="block shadow rounded-sm bg-white p-3"
+            <Device
+              title="Osvětlení"
+              description="Stropní svítidlo"
+              icon="lightbulb"
+              :activated="false"
               @click="alert"
-            >
-              <div class="text-center leading-relaxed h-full w-full">
-                <div class="w-full flex flex-row flex-nowrap items-center -mt-1 -mb-2">
-                  <span class="uppercase tracking-wide text-xs text-gray-300">Off</span>
-                  <button class="ml-auto text-gray-300" @click.stop="showForm('osvetleni-loznice', 'light')">
-                    <fa icon="ellipsis-v" />
-                  </button>
-                </div>
-                <img src="~/assets/images/lightbulb.png" class="mx-auto mb-2">
-                <span class="block font-bold text-gray-700">Osvětlení</span>
-                <span
-                  class="block text-xs text-gray-500"
-                >Stropní svítidlo</span>
-              </div>
-            </button>
+              @clickMore="showForm('osvetleni-loznice', 'light')"
+            />
+            <Device
+              title="Vytápění"
+              description="Režim den"
+              icon="lightbulb"
+              :activated="true"
+              @click="alert"
+              @clickMore="showForm('topeni-loznice', 'heater')"
+            />
             <button
-              class="block shadow rounded-sm bg-gradient-to-r from-purple-700 via-purple-800 to-indigo-800 p-3"
+              class="block shadow rounded-sm bg-gradient-to-r from-purple-700 via-purple-800 to-indigo-800 border border-purple-900 p-3"
               @click="alert"
             >
               <div class="text-center leading-relaxed h-full w-full">
@@ -110,7 +108,7 @@
               </div>
             </button>
             <button
-              class="block shadow rounded-sm bg-white p-3"
+              class="block shadow rounded-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 p-3"
               @click="alert"
             >
               <div class="relative text-center leading-relaxed h-full w-full">
@@ -125,7 +123,7 @@
                   class="mx-auto mb-2"
                 >
                 <span
-                  class="block font-bold text-gray-700"
+                  class="block font-bold text-gray-700 dark:text-gray-400"
                 >Lampička vpravo</span>
                 <span
                   class="block text-xs text-gray-500"
@@ -133,7 +131,7 @@
               </div>
             </button>
             <button
-              class="block shadow rounded-sm bg-white p-3"
+              class="block shadow rounded-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 p-3"
               @click="alert"
             >
               <div class="text-center leading-relaxed h-full w-full">
@@ -148,7 +146,7 @@
                   class="mx-auto mb-2"
                 >
                 <span
-                  class="block font-bold text-gray-700"
+                  class="block font-bold text-gray-700 dark:text-gray-400"
                 >Lampička vlevo</span>
                 <span
                   class="block text-xs text-gray-500"
