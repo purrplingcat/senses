@@ -1,5 +1,5 @@
 <template>
-  <component :is="formComponent" />
+  <component :is="formComponent" :device="device" />
 </template>
 
 <script>
@@ -17,11 +17,15 @@ export default {
     whichForm: {
       type: String,
       required: true
+    },
+    device: {
+      type: Object,
+      required: true,
     }
   },
   computed: {
     formComponent () {
-      const loader = Reflect.has(loaders, this.whichForm)
+      const loader = Reflect.has(loaders, this.whichForm) && this.device.available
         ? loaders[this.whichForm]
         : loaders.unknown
       const asyncComponent = () => ({

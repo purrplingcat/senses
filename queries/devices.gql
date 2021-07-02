@@ -1,0 +1,29 @@
+query Devices {
+  devices {
+    uid
+    name
+    title
+    description
+    type
+    class
+    room
+    available
+    turn
+    state
+  }
+}
+
+subscription WatchUpdates {
+  deviceUpdated {
+    uid
+    name
+    title
+    description
+    type
+    class
+    room
+    available
+    turn
+    state
+  }
+}

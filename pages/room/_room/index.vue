@@ -76,14 +76,17 @@
             class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2"
           >
             <Device
-              title="Osvětlení"
-              description="Stropní svítidlo"
-              icon="lightbulb"
-              :activated="false"
+              v-for="device in devices"
+              :key="device.uid"
+              :title="device.title"
+              :description="device.description"
+              :icon="iconByType(device.type, device.class)"
+              :activated="device.turn === 'on'"
+              :disabled="!device.available"
               @click="alert"
-              @clickMore="showForm('osvetleni-loznice', 'light')"
+              @clickMore="showForm(device.uid)"
             />
-            <Device
+            <!-- <Device
               title="Vytápění"
               description="Režim den"
               icon="lightbulb"
@@ -152,30 +155,61 @@
                   class="block text-xs text-gray-500"
                 >Ellenina lampička</span>
               </div>
-            </button>
+            </button>-->
           </div>
         </section>
       </content>
-      <ModalForm v-if="formVisible" :title="deviceId" @dismiss="formVisible = false">
-        <DeviceForm :which-form="whichForm" />
+      <ModalForm v-if="formVisible" :title="this.currentDevice.title" @dismiss="formVisible = false">
+        <DeviceForm :which-form="whichForm" :device="currentDevice" />
       </ModalForm>
     </div>
   </div>
 </template>
 
 <script>
+import devicesQuery from '@/queries/devices'
+import objectReducer from '@/utils/reduceObject'
+
 export default {
+  apollo: {
+    devices: {
+      query: devicesQuery.Devices,
+      update: (data) => data.devices.reduce(objectReducer('uid'), {}),
+      subscribeToMore: {
+        document: devicesQuery.WatchUpdates,
+        // Mutate the previous result
+        updateQuery: (previousResult, { subscriptionData }) => {
+          if (subscriptionData.data && subscriptionData.data.deviceUpdated) {
+            const updated = subscriptionData.data.deviceUpdated;
+            const idx = previousResult.devices.findIndex((d) => d.uid === updated.uid)
+
+            if (idx > -1) {
+              previousResult.devices[idx] = Object.assign({}, previousResult.devices[idx], updated);
+
+              return { devices: [...previousResult.devices] };
+            }
+          }
+        },
+        immediate: true,
+      }
+    }
+  },
+  computed: {
+    currentDevice() {
+      return this.devices[this.deviceId];
+    }
+  },
   data () {
     return {
       formVisible: false,
       deviceId: '',
-      whichForm: 'Light'
+      whichForm: 'unknown',
     }
   },
   methods: {
-    showForm (deviceId, deviceType) {
+    showForm (deviceId) {
       this.deviceId = deviceId
-      this.whichForm = deviceType
+      this.whichForm = this.devices[deviceId].type
       this.formVisible = true
     },
     alert () {

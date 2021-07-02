@@ -1,3 +1,5 @@
+import icons from "./icons.config.js";
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -27,11 +29,28 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/components',
-    '@/plugins/colormode'
+    '@/plugins/colormode',
+    '@/plugins/svg-icons',
   ],
+
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:8080/graphql',
+        wsEndpoint: 'ws://localhost:8080/graphql',
+      }
+    }
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+
+  // Public runtime config
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.API_URL || 'http://localhost:8080'
+    }
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -52,7 +71,9 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://google-fonts.nuxtjs.org/
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    // https://github.com/nuxt-community/apollo-module
+    '@nuxtjs/apollo'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -82,24 +103,7 @@ export default {
 
   fontawesome: {
     component: 'fa',
-    icons: {
-      solid: [
-        'faHome',
-        'faCouch',
-        'faHeart',
-        'faBell',
-        'faArrowLeft',
-        'faThermometerHalf',
-        'faTemperatureHigh',
-        'faPlug',
-        'faQuestion',
-        'faEllipsisV'
-      ],
-      regular: ['faLightbulb', 'faEye'],
-      light: [],
-      duotone: [],
-      brands: []
-    }
+    icons,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
