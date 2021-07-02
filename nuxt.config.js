@@ -39,7 +39,8 @@ export default {
         httpEndpoint: 'http://localhost:8080/graphql',
         wsEndpoint: 'ws://localhost:8080/graphql',
       }
-    }
+    },
+    watchLoading: '@/plugins/watch-loading.js'
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
