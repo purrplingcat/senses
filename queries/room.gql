@@ -1,0 +1,9 @@
+query Room($name: String!) {
+  room(name: $name) {
+    name
+    title
+    description
+		icon
+    deviceCount
+  }
+}

@@ -16,7 +16,7 @@
           <h2
             class="mt-2 text-lg text-purple-100 font-bold tracking-wider capitalize"
           >
-            Ložnice
+          {{ room.title }}
           </h2>
         </div>
       </section>
@@ -180,10 +180,24 @@
 
 <script>
 import devicesQuery from '@/queries/devices'
+import roomQuery from '@/queries/room'
 import objectReducer from '@/utils/reduceObject'
 
 export default {
   apollo: {
+    room: {
+      query: roomQuery.Room,
+      variables() {
+        return {
+          name: this.$route.params.room,
+        }
+      },
+      error(err) {
+        if (err.gqlError && err.gqlError.extensions.exception.code === 404) {
+          this.$nuxt.error(404)
+        }
+      }
+    },
     devices: {
       query: devicesQuery.DevicesByRoom,
       update: (data) => data.devices.reduce(objectReducer('uid'), {}),
@@ -224,6 +238,7 @@ export default {
       formVisible: false,
       deviceId: '',
       whichForm: 'unknown',
+      room: {},
     }
   },
   methods: {
