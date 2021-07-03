@@ -1,5 +1,20 @@
-query Devices {
+query AllDevices {
   devices {
+    uid
+    name
+    title
+    description
+    type
+    class
+    room
+    available
+    turn
+    state
+  }
+}
+
+query DevicesByRoom($room: String) {
+  devices(filter: {room: $room}) {
     uid
     name
     title

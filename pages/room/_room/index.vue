@@ -185,9 +185,14 @@ import objectReducer from '@/utils/reduceObject'
 export default {
   apollo: {
     devices: {
-      query: devicesQuery.Devices,
+      query: devicesQuery.DevicesByRoom,
       update: (data) => data.devices.reduce(objectReducer('uid'), {}),
       fetchPolicy: 'cache-and-network',
+      variables() {
+        return {
+          room: this.$route.params.room,
+        }
+      },
       subscribeToMore: {
         document: devicesQuery.WatchUpdates,
         // Mutate the previous result
