@@ -11,32 +11,11 @@
           Místnosti
         </h3>
         <div class="grid grid-flow-row grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-          <nuxt-link to="/room/livingroom" class="block shadow rounded-sm bg-white p-3">
+          <nuxt-link v-for="room in rooms" :key="room.name" :to="`/room/${room.name}`" class="block shadow rounded-sm bg-white p-3">
             <div class="text-center leading-relaxed">
-              <img src="~/assets/images/couch.png" class="mx-auto mb-2">
-              <span class="block font-bold text-gray-700">Obývák</span>
-              <span class="block text-xs text-gray-500">2 zařízení</span>
-            </div>
-          </nuxt-link>
-          <nuxt-link to="/room/bedroom" class="block shadow rounded-sm bg-white p-3">
-            <div class="text-center leading-relaxed">
-              <img src="~/assets/images/double-bed.png" class="mx-auto mb-2">
-              <span class="block font-bold text-gray-700">Ložnice</span>
-              <span class="block text-xs text-gray-500">3 zařízení</span>
-            </div>
-          </nuxt-link>
-          <nuxt-link to="/room/kitchen" class="block shadow rounded-sm bg-white p-3">
-            <div class="text-center leading-relaxed">
-              <img src="~/assets/images/kitchen.png" class="mx-auto mb-2">
-              <span class="block font-bold text-gray-700">Kuchyně</span>
-              <span class="block text-xs text-gray-500">3 zařízení</span>
-            </div>
-          </nuxt-link>
-          <nuxt-link to="/room/bathroom" class="block shadow rounded-sm bg-white p-3">
-            <div class="text-center leading-relaxed">
-              <img src="~/assets/images/bathroom.png" class="mx-auto mb-2">
-              <span class="block font-bold text-gray-700">Koupelna</span>
-              <span class="block text-xs text-gray-500">3 zařízení</span>
+              <svg-icon :name="room.icon || 'rooms/cube'" class="w-16 h-16 mx-auto mb-2" />
+              <span class="block font-bold text-gray-700">{{ room.title || 'Neznámá místnost' }}</span>
+              <span class="block text-xs text-gray-500">{{ room.deviceCount }} zařízení</span>
             </div>
           </nuxt-link>
         </div>
@@ -75,8 +54,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
+import roomQuery from '@/queries/room'
 
-export default Vue.extend({})
+export default {
+  apollo: {
+    rooms: {
+      query: roomQuery.AllRooms
+    },
+  }
+}
 </script>

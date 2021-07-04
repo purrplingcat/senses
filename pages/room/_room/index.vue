@@ -11,7 +11,7 @@
           <div
             class="mx-auto flex flex-row items-center bg-purple-300 bg-opacity-20 rounded-full p-3"
           >
-            <img src="~/assets/images/double-bed.png" class="w-8 h-8">
+            <svg-icon :name="room.icon || 'rooms/cube'" class="w-8 h-8" />
           </div>
           <h2
             class="mt-2 text-lg text-purple-100 font-bold tracking-wider capitalize"

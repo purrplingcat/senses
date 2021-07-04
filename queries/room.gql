@@ -4,6 +4,14 @@ query Room($name: String!) {
     title
     description
 		icon
+  }
+}
+
+query AllRooms {
+  rooms {
+    name
+    title
+    icon
     deviceCount
   }
 }
