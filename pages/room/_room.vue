@@ -28,7 +28,7 @@
             <div class="text-4xl mr-4">
               <fa icon="thermometer-half" />
             </div>
-            <span class="text-4xl">{{ temperature|fixed }} °C</span>
+            <span class="text-4xl">{{ temperature|fixed(1) }} °C</span>
           </div>
           <div
             class="flex flex-row flex-wrap mt-3 font-thin text-xs leading-loose tracking-wide"
@@ -114,8 +114,8 @@
       <content v-if="view === 'sensors'">
         <dl v-for="sensor in sensors" :key="sensor.uid">
           <dt>{{ sensor.title }}</dt>
-          <dd>{{ sensor.lastUpdate | dateDistance }}</dd>
-          <dd>{{ sensor.state.value }}</dd>
+          <dd><date-distance :value="sensor.lastUpdate" /></dd>
+          <dd>{{ sensor.state.value | fixed }}</dd>
         </dl>
       </content>
       <ModalForm
@@ -143,13 +143,13 @@
 </style>
 
 <script>
-import gql from "graphql-tag";
-import { formatDistance } from 'date-fns'
 import devicesQuery from '@/queries/devices'
 import roomQuery from '@/queries/room'
 import objectReducer from '@/utils/reduceObject'
+import DateDistance from '~/components/DateDistance.vue'
 
 export default {
+  components: { DateDistance },
   apollo: {
     room: {
       query: roomQuery.Room,
@@ -222,19 +222,7 @@ export default {
       whichForm: 'unknown',
       room: {},
       view: 'devices',
-      now: new Date(),
-      timer: null,
     }
-  },
-  created() {
-    this.now = new Date()
-    this.timer = setInterval(() => {
-      this.now = new Date()
-      console.log(this.now)
-    }, 5000)
-  },
-  destroyed() {
-    clearInterval(this.timer)
   },
   methods: {
     showForm (deviceId) {
@@ -261,12 +249,9 @@ export default {
     nullable(value) {
       return value == null ? '-' : value;
     },
-    fixed(value) {
-      return Number(value).toFixed(1);
+    fixed(value, digits = 2) {
+      return Number(value).toFixed(digits);
     },
-    dateDistance(value) {
-      return formatDistance(new Date(value), new Date(), { addSuffix: true })
-    }
   }
 }
 </script>
