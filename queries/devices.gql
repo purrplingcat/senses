@@ -9,6 +9,7 @@ query AllDevices {
     room
     available
     turn
+    turnable
     state
   }
 }
@@ -24,8 +25,15 @@ query DevicesByRoom($room: String) {
     room
     available
     turn
+    turnable
+    lastUpdate
     state
+    tags
   }
+}
+
+mutation Update ($uid: String!, $state: JSON!) {
+  setState(deviceUid: $uid, newState: $state)
 }
 
 subscription WatchUpdates {
@@ -34,5 +42,6 @@ subscription WatchUpdates {
     available
     turn
     state
+    lastUpdate
   }
 }

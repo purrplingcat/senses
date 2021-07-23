@@ -7,7 +7,7 @@
         :value="value"
         :checked="reflectState(checked)"
         class="hidden"
-        @change="change($event.target)"
+        @click.prevent="change(!checked)"
       >
       <div class="ui-toggle__track w-10 h-4 bg-gray-300 shadow-inner rounded-full" />
       <div class="ui-toggle__dot absolute w-6 h-6 shadow bg-white border border-gray-200 rounded-full inset-y-0 left-0" />
@@ -26,7 +26,7 @@ export default {
   },
   props: ['name', 'label', 'checked', 'value', 'color'],
   methods: {
-    change (el) {
+    change (checked) {
       if (Array.isArray(this.checked)) {
         const checked = [].concat(this.checked)
         const value = this.value
@@ -40,7 +40,7 @@ export default {
         return this.$emit('change', checked)
       }
 
-      this.$emit('change', !!el.checked)
+      this.$emit('change', !checked)
     },
     reflectState (state) {
       if (Array.isArray(state)) {

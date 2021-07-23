@@ -8,7 +8,7 @@
         <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
           {{ title }}
         </h3>
-        <Toggle />
+        <slot name="header" />
       </div>
       <form class="flex flex-col h-5/6 px-6 py-3 overflow-y-auto mb-auto">
         <slot />
@@ -28,7 +28,8 @@
 <script>
 export default {
   props: {
-    title: String
+    title: String,
+    toggle: Boolean,
   }
 }
 </script>

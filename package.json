@@ -21,6 +21,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/svg-sprite": "^0.5.2",
     "core-js": "^3.9.1",
+    "date-fns": "^2.22.1",
     "graphql-tag": "^2.12.5",
     "nuxt": "^2.15.7",
     "sass": "^1.32.8",
