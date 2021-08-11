@@ -21,10 +21,10 @@ export default {
     },
     device: {
       type: Object,
-      required: true,
+      required: true
     }
   },
-  data() {
+  data () {
     return {
       formData: { ...this.device.state }
     }
@@ -45,9 +45,11 @@ export default {
     }
   },
   methods: {
-		updateState(state) {
-      if (!state) return;
-    	console.log('the form object updated', state)
+    sync () {
+      this.formData = { ...this.device.state }
+    },
+    updateState (state) {
+      if (!state) { return }
 
       this.formData = { ...this.formData, ...state }
       this.$apollo.mutate({
@@ -58,8 +60,8 @@ export default {
           uid: this.device.uid,
           state
         }
-      });
+      })
     }
-  },
+  }
 }
 </script>

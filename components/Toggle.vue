@@ -1,11 +1,12 @@
 <template>
-  <label class="ui-toggle flex items-center cursor-pointer">
+  <label class="ui-toggle flex items-center cursor-pointer" :class="{'opacity-80 cursor-not-allowed': disabled}">
     <div class="relative">
       <input
         type="checkbox"
         :name="name"
         :value="value"
         :checked="reflectState(checked)"
+        :disabled="disabled"
         class="hidden"
         @click.prevent="change(!checked)"
       >
@@ -24,9 +25,11 @@ export default {
     prop: 'checked',
     event: 'change'
   },
-  props: ['name', 'label', 'checked', 'value', 'color'],
+  props: ['name', 'label', 'checked', 'value', 'color', 'disabled'],
   methods: {
     change (checked) {
+      if (this.disabled) { return }
+
       if (Array.isArray(this.checked)) {
         const checked = [].concat(this.checked)
         const value = this.value
@@ -69,6 +72,14 @@ export default {
       transform: translateX(100%);
 
       @apply bg-purple-800 border-purple-700;
+    }
+
+    input[disabled] ~ .ui-toggle__dot {
+      @apply bg-gray-200 border-gray-300;
+    }
+
+    input[disabled] ~ .ui-toggle__track {
+      @apply bg-gray-400;
     }
   }
 </style>

@@ -29,7 +29,7 @@
 export default {
   props: {
     title: String,
-    toggle: Boolean,
+    toggle: Boolean
   }
 }
 </script>

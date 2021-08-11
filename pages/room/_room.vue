@@ -124,14 +124,34 @@
           <dd><date-distance :value="sensor.lastUpdate" /></dd>
           <dd>{{ sensor.state.value | fixed }}</dd>
         </dl>
+        <div v-if="!sensors || !sensors.length" class="flex flex-col items-center justify-center content-center my-auto">
+          <fa icon="slash" class="text-4xl text-gray-400 my-3" />
+          <span class="text-gray-400 text-sm font-semibold mt-1">
+            Žádné sensory nejsou k dispozici.
+          </span>
+        </div>
       </content>
       <ModalForm
         v-if="formVisible"
         :title="currentDevice.title"
         @dismiss="formVisible = false"
       >
-        <Toggle slot="header" :checked="currentDevice.turn === 'on'" @change="toggle(currentDevice)" />
-        <DeviceForm :which-form="whichForm" :device="currentDevice" />
+        <div slot="header" class="flex flex-row px-2 space-x-3">
+          <button
+            type="button"
+            title="Obnovit data ze zařízení"
+            class="px-2 py-1 text-sm text-gray-300 rounded-md border border-transparent hover:shadow-md hover:border-gray-100"
+            @click.prevent="$refs.form.sync()"
+          >
+            <fa icon="sync" />
+          </button>
+          <Toggle
+            :disabled="!currentDevice.available"
+            :checked="currentDevice.turn === 'on'"
+            @change="toggle(currentDevice)"
+          />
+        </div>
+        <DeviceForm ref="form" :which-form="whichForm" :device="currentDevice" />
       </ModalForm>
     </div>
   </div>

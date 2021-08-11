@@ -1,4 +1,4 @@
-import icons from "./icons.config.js";
+import icons from './icons.config.js'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -23,21 +23,22 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/slider.css',
-    '@/assets/css/svg-image.scss'
+    '@/assets/css/svg-image.scss',
+    '@/assets/css/utilities.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/components',
     '@/plugins/colormode',
-    '@/plugins/svg-icons',
+    '@/plugins/svg-icons'
   ],
 
   apollo: {
     clientConfigs: {
       default: {
         httpEndpoint: 'http://localhost:8080/graphql',
-        wsEndpoint: 'ws://localhost:8080/graphql',
+        wsEndpoint: 'ws://localhost:8080/graphql'
       }
     },
     watchLoading: '@/plugins/watch-loading.js'
@@ -104,10 +105,23 @@ export default {
 
   fontawesome: {
     component: 'fa',
-    icons,
+    icons
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    }
   }
 }
