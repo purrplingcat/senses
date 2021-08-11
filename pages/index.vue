@@ -61,7 +61,7 @@ export default {
   apollo: {
     rooms: {
       query: roomQuery.AllRooms
-    },
+    }
   }
 }
 </script>

@@ -18,7 +18,7 @@
             v-else
             class="mt-2 text-lg text-purple-100 font-bold tracking-wider capitalize"
           >
-          {{ room.title }}
+            {{ room.title }}
           </h2>
         </div>
       </section>
@@ -55,23 +55,23 @@
           class="flex flex-row flex-nowrap w-full overflow-x-auto bg-gray-50 dark:bg-gray-800 text-sm font-light"
         >
           <button
-            @click="view = 'devices'"
             :class="{active: view === 'devices'}"
             class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent tracking-wider"
+            @click="view = 'devices'"
           >
             Zařízení
           </button>
           <button
-            @click="view = 'scenes'"
             :class="{active: view === 'scenes'}"
             class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 dark:text-gray-500 tracking-wider"
+            @click="view = 'scenes'"
           >
             Nálady
           </button>
           <button
-            @click="view = 'sensors'"
             :class="{active: view === 'sensors'}"
             class="flex-grow md:flex-grow-0 px-6 md:px-10 py-3 border-b-4 border-transparent text-gray-600 dark:text-gray-500 tracking-wider"
+            @click="view = 'sensors'"
           >
             Senzory
           </button>
@@ -100,8 +100,15 @@
         </section>
         <div v-if="!deviceCount && $apollo.queries.allDevices.loading" class="flex flex-row">
           <svg class="animate-spin mx-auto h-8 w-8 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            />
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
           </svg>
         </div>
         <div v-else-if="!deviceCount" class="flex flex-col items-center justify-center content-center my-auto">
@@ -120,7 +127,7 @@
       </content>
       <ModalForm
         v-if="formVisible"
-        :title="this.currentDevice.title"
+        :title="currentDevice.title"
         @dismiss="formVisible = false"
       >
         <Toggle slot="header" :checked="currentDevice.turn === 'on'" @change="toggle(currentDevice)" />
@@ -129,18 +136,6 @@
     </div>
   </div>
 </template>
-
-<style lang="scss">
-#view-switch {
-  button:hover {
-    @apply text-gray-800 font-bold;
-  }
-
-  .active {
-    @apply border-purple-900 dark:border-purple-700 text-gray-800 dark:text-gray-50 font-bold;
-  }
-}
-</style>
 
 <script>
 import devicesQuery from '@/queries/devices'
@@ -153,12 +148,12 @@ export default {
   apollo: {
     room: {
       query: roomQuery.Room,
-      variables() {
+      variables () {
         return {
-          name: this.$route.params.room,
+          name: this.$route.params.room
         }
       },
-      error(err) {
+      error (err) {
         if (err.gqlError && err.gqlError.extensions.exception.code === 404) {
           this.$nuxt.error(404)
         }
@@ -166,11 +161,11 @@ export default {
     },
     allDevices: {
       query: devicesQuery.DevicesByRoom,
-      update: (data) => data.devices.reduce(objectReducer('uid'), {}),
+      update: data => data.devices.reduce(objectReducer('uid'), {}),
       fetchPolicy: 'cache-and-network',
-      variables() {
+      variables () {
         return {
-          room: this.$route.params.room,
+          room: this.$route.params.room
         }
       },
       subscribeToMore: {
@@ -178,41 +173,25 @@ export default {
         // Mutate the previous result
         updateQuery: (previousResult, { subscriptionData }) => {
           if (subscriptionData.data && subscriptionData.data.deviceUpdated) {
-            const updated = subscriptionData.data.deviceUpdated;
-            const idx = previousResult.devices.findIndex((d) => d.uid === updated.uid)
+            const updated = subscriptionData.data.deviceUpdated
+            const idx = previousResult.devices.findIndex(d => d.uid === updated.uid)
 
             if (idx > -1) {
-              previousResult.devices[idx] = Object.assign({}, previousResult.devices[idx], updated);
+              previousResult.devices[idx] = Object.assign({}, previousResult.devices[idx], updated)
 
-              return { devices: [...previousResult.devices] };
+              return { devices: [...previousResult.devices] }
             }
           }
-        },
+        }
       }
     }
   },
-  computed: {
-    currentDevice() {
-      return this.allDevices[this.deviceId];
+  filters: {
+    nullable (value) {
+      return value == null ? '-' : value
     },
-    devices() {
-      return Object.values(this.allDevices || {})
-        .filter((d) => d.type !== 'sensor' && d.turnable);
-    },
-    sensors() {
-      return Object.values(this.allDevices || {})
-        .filter((d) => d.type === 'sensor');
-    },
-    deviceCount() {
-      return this.devices.length;
-    },
-    temperature() {
-      const sensor = this.sensors.find((s) => s.class === 'temperature' && s.tags.includes('main'));
-
-      return sensor ? sensor.state.value : null;
-    },
-    anyLightOn() {
-      return this.devices.filter((d) => d.available && d.type === 'light' && d.turn === 'on').length > 0;
+    fixed (value, digits = 2) {
+      return Number(value).toFixed(digits)
     }
   },
   data () {
@@ -221,7 +200,31 @@ export default {
       deviceId: '',
       whichForm: 'unknown',
       room: {},
-      view: 'devices',
+      view: 'devices'
+    }
+  },
+  computed: {
+    currentDevice () {
+      return this.allDevices[this.deviceId]
+    },
+    devices () {
+      return Object.values(this.allDevices || {})
+        .filter(d => d.type !== 'sensor' && d.turnable)
+    },
+    sensors () {
+      return Object.values(this.allDevices || {})
+        .filter(d => d.type === 'sensor')
+    },
+    deviceCount () {
+      return this.devices.length
+    },
+    temperature () {
+      const sensor = this.sensors.find(s => s.class === 'temperature' && s.tags.includes('main'))
+
+      return sensor ? sensor.state.value : null
+    },
+    anyLightOn () {
+      return this.devices.filter(d => d.available && d.type === 'light' && d.turn === 'on').length > 0
     }
   },
   methods: {
@@ -233,25 +236,29 @@ export default {
     alert () {
       window.alert('baf')
     },
-    toggle(device) {
+    toggle (device) {
       this.$apollo.mutate({
         // Query
         mutation: devicesQuery.Update,
         // Parameters
         variables: {
           uid: device.uid,
-          state: {state: device.turn === "on" ? "off" : "on"}
+          state: { state: device.turn === 'on' ? 'off' : 'on' }
         }
-      });
+      })
     }
-  },
-  filters: {
-    nullable(value) {
-      return value == null ? '-' : value;
-    },
-    fixed(value, digits = 2) {
-      return Number(value).toFixed(digits);
-    },
   }
 }
 </script>
+
+<style lang="scss">
+#view-switch {
+  button:hover {
+    @apply text-gray-800 font-bold;
+  }
+
+  .active {
+    @apply border-purple-900 dark:border-purple-700 text-gray-800 dark:text-gray-50 font-bold;
+  }
+}
+</style>
