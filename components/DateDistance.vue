@@ -7,36 +7,9 @@ import { formatDistance, isValid, parseISO } from 'date-fns'
 import csLocale from 'date-fns/locale/cs'
 
 export default {
-  props: ['value', 'refreshRate'],
-  data() {
-    return {
-      now: new Date(),
-      timer: null,
-    }
-  },
-  computed: {
-    date() {
-      if (typeof this.value === 'string') {
-        return parseISO(this.value)
-      }
-
-      return new Date(this.value)
-    }
-  },
-  methods: {
-    restart() {
-      const refresh = () => {
-        this.now = new Date()
-        this.timer = setTimeout(refresh, this.refreshRate || 10000)
-      }
-
-      clearTimeout(this.timer)
-      refresh();
-    }
-  },
-  filters:{
-    distance(date, baseDate) {
-      if (!isValid(date)) return "never";
+  filters: {
+    distance (date, baseDate) {
+      if (!isValid(date)) { return 'never' }
 
       return formatDistance(date, baseDate, {
         addSuffix: true,
@@ -45,14 +18,41 @@ export default {
       })
     }
   },
-  created() {
-    this.restart();
+  props: ['value', 'refreshRate'],
+  data () {
+    return {
+      now: new Date(),
+      timer: null
+    }
   },
-  beforeUpdate() {
-    this.restart();
+  computed: {
+    date () {
+      if (typeof this.value === 'string') {
+        return parseISO(this.value)
+      }
+
+      return new Date(this.value)
+    }
   },
-  destroyed() {
+  created () {
+    this.restart()
+  },
+  beforeUpdate () {
+    this.restart()
+  },
+  destroyed () {
     clearTimeout(this.timer)
   },
+  methods: {
+    restart () {
+      const refresh = () => {
+        this.now = new Date()
+        this.timer = setTimeout(refresh, this.refreshRate || 10000)
+      }
+
+      clearTimeout(this.timer)
+      refresh()
+    }
+  }
 }
 </script>

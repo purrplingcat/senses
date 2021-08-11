@@ -118,12 +118,8 @@
           </span>
         </div>
       </content>
-      <content v-if="view === 'sensors'">
-        <dl v-for="sensor in sensors" :key="sensor.uid">
-          <dt>{{ sensor.title }}</dt>
-          <dd><date-distance :value="sensor.lastUpdate" /></dd>
-          <dd>{{ sensor.state.value | fixed }}</dd>
-        </dl>
+      <content v-if="view === 'sensors'" class="lg:px-6 grid grid-cols-1 lg:grid-cols-3 gap-1">
+        <Sensor v-for="sensor in sensors" :key="sensor.uid" :sensor="sensor" />
         <div v-if="!sensors || !sensors.length" class="flex flex-col items-center justify-center content-center my-auto">
           <fa icon="slash" class="text-4xl text-gray-400 my-3" />
           <span class="text-gray-400 text-sm font-semibold mt-1">
@@ -161,10 +157,8 @@
 import devicesQuery from '@/queries/devices'
 import roomQuery from '@/queries/room'
 import objectReducer from '@/utils/reduceObject'
-import DateDistance from '~/components/DateDistance.vue'
 
 export default {
-  components: { DateDistance },
   apollo: {
     room: {
       query: roomQuery.Room,
@@ -241,7 +235,9 @@ export default {
     temperature () {
       const sensor = this.sensors.find(s => s.class === 'temperature' && s.tags.includes('main'))
 
-      return sensor ? sensor.state.value : null
+      if (!sensor) { return null }
+
+      return sensor.state[sensor.extraAttrs.mainField || 'temperature']
     },
     anyLightOn () {
       return this.devices.filter(d => d.available && d.type === 'light' && d.turn === 'on').length > 0
