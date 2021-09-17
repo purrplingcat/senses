@@ -10,6 +10,7 @@ import devicesQuery from '@/queries/devices'
 const loaders = {
   light: () => import('@/components/form/Light.vue'),
   lamp: () => import('@/components/form/Lamp.vue'),
+  vacuum: () => import('@/components/form/Vacuum.vue'),
   unknown: () => import('@/components/form/Unknown.vue')
 }
 

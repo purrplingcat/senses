@@ -3,20 +3,18 @@ const noopLoading = {
   start: () => { },
   fail: () => { },
   set: () => { },
-  increase: () => { },
+  increase: () => { }
 }
 
 const $loading = () => {
-  const $nuxt = typeof window !== 'undefined' && window['$nuxt']
+  const $nuxt = typeof window !== 'undefined' && window.$nuxt
   return ($nuxt && $nuxt.$loading && $nuxt.$loading.set) ? $nuxt.$loading : noopLoading
 }
 
 export default (isLoading, countModifier) => {
   if (!process.browser) {
-    return;
+    return
   }
-
-  console.log($loading())
 
   if (isLoading && !$nuxt.$loading.show) {
     $loading().start()
@@ -27,5 +25,5 @@ export default (isLoading, countModifier) => {
     return
   }
 
-  $loading().increase(countModifier);
+  $loading().increase(countModifier)
 }

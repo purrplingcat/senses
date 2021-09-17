@@ -33,6 +33,25 @@ query DevicesByRoom($room: String) {
   }
 }
 
+query DevicesByType($type: String) {
+  devices(filter: {type: $type}) {
+    uid
+    name
+    title
+    description
+    type
+    class
+    room
+    available
+    turn
+    turnable
+    lastUpdate
+    state
+    tags
+    extraAttrs
+  }
+}
+
 mutation Update ($uid: String!, $state: JSON!) {
   setState(deviceUid: $uid, newState: $state)
 }
