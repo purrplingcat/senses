@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col h-full">
     <div class="flex flex-col w-full py-3">
       <label class="text-sm text-gray-600 font-semibold mb-1">Status</label>
       <span>{{ status }}</span>
@@ -16,9 +16,23 @@
       <label class="text-sm text-gray-600 font-semibold mb-1">Doba vysávání</label>
       <span>{{ device.state.cleaningTime | duration }}</span>
     </div>
-    <div class="flex flex-col w-full py-3">
-      <label class="text-sm text-gray-600 font-semibold mb-1">Příkazy</label>
-      <RadioButtons class="mt-2" :options="commands" @input="sendCommand" />
+    <div class="flex flex-row w-full py-3 mt-auto mb-2 justify-center items-center">
+      <button
+        type="button"
+        class="ml-auto command-button border border-gray-300 border-r-0 rounded-l-lg"
+        @click="sendCommand('stop')"
+      >
+        <fa icon="stop" class="text-xl align-middle" />
+      </button>
+      <button type="button" class="command-button border border-gray-300" :class="{active: device.turn === 'on'}" @click="update({state: device.turn !== 'on' ? 'on' : 'off'})">
+        <fa :icon="device.turn === 'on' ? 'pause' : 'play'" class="text-xl align-middle" />
+      </button>
+      <button type="button" class="command-button border border-gray-300 border-l-0" :disabled="homeDisabled" @click="sendCommand('dock')">
+        <fa icon="home" class="text-xl align-middle" />
+      </button>
+      <button type="button" class="mr-auto command-button border border-gray-300 border-l-0 rounded-r-lg" :disabled="device.turn === 'on'" @click="sendCommand('find')">
+        <fa icon="search-location" class="text-xl align-middle" />
+      </button>
     </div>
   </div>
 </template>
@@ -37,17 +51,15 @@ export default {
   },
   props: ['device', 'data'],
   data () {
-    return {
-      commands: {
-        clean: 'Vysávat',
-        pause: 'Pauza',
-        stop: 'Zastavit',
-        dock: 'Návrat domů',
-        find: 'Kde jsem?'
-      }
-    }
+    return {}
   },
   computed: {
+    isRunning () {
+      return !['docked', 'idle', 'error'].includes(this.device.state.status)
+    },
+    homeDisabled () {
+      return ['returning', 'docked'].includes(this.device.state.status)
+    },
     status () {
       switch (this.device.state.status) {
         case 'cleaning':
@@ -93,3 +105,21 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.command-button {
+  @apply px-5 py-3 bg-white box-border text-gray-600;
+
+  &:hover {
+    @apply bg-gray-200;
+  }
+
+  &:disabled {
+    @apply cursor-not-allowed text-gray-500 bg-gray-300;
+  }
+
+  &.active {
+    @apply bg-purple-700 text-white;
+  }
+}
+</style>

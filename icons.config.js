@@ -11,7 +11,11 @@ export default {
     'faQuestion',
     'faEllipsisV',
     'faSlash',
-    'faSync'
+    'faSync',
+    'faPlay',
+    'faPause',
+    'faStop',
+    'faSearchLocation'
   ],
   regular: ['faLightbulb', 'faEye'],
   light: [],
