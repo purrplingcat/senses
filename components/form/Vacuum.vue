@@ -1,20 +1,28 @@
 <template>
   <div class="flex flex-col h-full">
-    <div class="flex flex-col w-full py-3">
-      <label class="text-sm text-gray-600 font-semibold mb-1">Status</label>
-      <span>{{ status }}</span>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-1 w-full py-3">
+      <div class="text-sm text-gray-900 font-semibold mb-1">
+        <fa :icon="statusIcon" size="lg" class="pr-1" />
+        {{ statusMessage }}
+      </div>
+      <div class="text-sm text-gray-900 font-semibold mb-1" :class="{'text-red-600': device.state.battery < 16}">
+        <fa :icon="batteryIcon" size="lg" class="pr-1" />
+        {{ device.state.battery }} %
+      </div>
+      <div class="text-sm text-gray-900 font-semibold mb-1" :class="{'text-red-600': device.state.battery < 16}">
+        <fa icon="trash" size="lg" class="pr-1" :class="{'text-red-600': device.state.bin !== 'present'}" />
+        {{ binMessage }}
+      </div>
+      <div class="text-sm text-gray-900 font-semibold mb-1" :class="{'text-red-600': device.state.battery < 16}">
+        <fa icon="stopwatch" size="lg" class="pr-1" />
+        {{ device.state.cleaningTime | duration }}
+      </div>
     </div>
-    <div class="flex flex-col w-full py-3">
-      <label class="text-sm text-gray-600 font-semibold mb-1">Stav baterie</label>
-      <span>{{ device.state.battery }} %</span>
+    <div v-if="alertMessage" class="px-6 py-3 bg-yellow-300 border border-yellow-600 text-yellow-900 rounded-sm my-3">
+      {{ alertMessage }}
     </div>
-    <div class="flex flex-col w-full py-3">
-      <label class="text-sm text-gray-600 font-semibold mb-1">Zásobník prachu</label>
-      <span>{{ bin }}</span>
-    </div>
-    <div class="flex flex-col w-full py-3">
-      <label class="text-sm text-gray-600 font-semibold mb-1">Doba vysávání</label>
-      <span>{{ device.state.cleaningTime | duration }}</span>
+    <div class="flex flex-row w-full justify-center mt-auto">
+      <svg-icon :name="statusBigIcon" class="w-32 h-32 mx-auto mb-2" />
     </div>
     <div class="flex flex-row w-full py-3 mt-auto mb-2 justify-center items-center">
       <button
@@ -60,35 +68,86 @@ export default {
     homeDisabled () {
       return ['returning', 'docked'].includes(this.device.state.status)
     },
-    status () {
+    statusMessage () {
       switch (this.device.state.status) {
         case 'cleaning':
           return 'Vysávání'
         case 'returning':
           return 'Vracím se domů'
-        case 'pause':
+        case 'paused':
           return 'Pauza'
         case 'idle':
           return 'Nečinný'
         case 'docked':
-          return 'Doma (Nabíjení)'
+          return 'Doma'
         case 'error':
           return 'Chyba'
         default:
           return 'Neznámý stav'
       }
     },
-    bin () {
+    statusIcon () {
+      switch (this.device.state.status) {
+        case 'cleaning':
+          return 'play'
+        case 'returning':
+          return 'hourglass'
+        case 'paused':
+          return 'pause'
+        case 'idle':
+          return 'stop'
+        case 'docked':
+          return 'home'
+        case 'error':
+          return 'exclamation-circle'
+        default:
+          return 'question'
+      }
+    },
+    binMessage () {
       switch (this.device.state.bin) {
         case 'present':
           return 'Přítomen'
         case 'removed':
           return 'Vyjmut'
         case 'full':
-          return 'Plný (Vyžaduje vyprázdnit)'
+          return 'Plný'
         default:
           return 'Neznámý'
       }
+    },
+    batteryIcon () {
+      const battery = this.device.state.battery
+
+      if (battery > 95) { return 'battery-full' }
+      if (battery > 70) { return 'battery-three-quarters' }
+      if (battery > 45) { return 'battery-half' }
+      if (battery > 20) { return 'battery-quarter' }
+
+      return 'battery-empty'
+    },
+    alertMessage () {
+      if (this.device.state.bin === 'full') {
+        return 'Vyprázdněte zásobník smetí'
+      }
+
+      if (this.device.state.status === 'error' || this.device.state.error > 0) {
+        return this.device.state.errorMessage || 'Vysavač se zasekl nebo má nějaký jiný problém.'
+      }
+
+      if (this.device.state.battery < 16) {
+        return 'Baterie je téměř vybitá! Nabijte prosím váš vysavač.'
+      }
+
+      return null
+    },
+    statusBigIcon () {
+      const status = this.device.state.status
+
+      if (status === 'returning') { return 'roomba-busy' }
+      if (status === 'error') { return 'roomba-stuck' }
+
+      return ['docked', 'idle'].includes(status) ? 'roomba-standby' : 'roomba'
     }
   },
   watch: {},

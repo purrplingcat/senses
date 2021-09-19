@@ -15,7 +15,16 @@ export default {
     'faPlay',
     'faPause',
     'faStop',
-    'faSearchLocation'
+    'faSearchLocation',
+    'faBatteryEmpty',
+    'faBatteryQuarter',
+    'faBatteryHalf',
+    'faBatteryThreeQuarters',
+    'faBatteryFull',
+    'faTrash',
+    'faStopwatch',
+    'faHourglass',
+    'faExclamationCircle'
   ],
   regular: ['faLightbulb', 'faEye'],
   light: [],
