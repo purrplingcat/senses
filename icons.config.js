@@ -24,7 +24,9 @@ export default {
     'faTrash',
     'faStopwatch',
     'faHourglass',
-    'faExclamationCircle'
+    'faExclamationCircle',
+    'faBolt',
+    'faRoute'
   ],
   regular: ['faLightbulb', 'faEye'],
   light: [],
