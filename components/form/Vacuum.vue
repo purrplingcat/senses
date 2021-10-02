@@ -23,21 +23,21 @@
       </div>
       <div class="flex flex-col items-center text-center mb-4">
         <span class="text-2xl mt-2">{{ statusMessage }}</span>
-        <span v-show="device.state.ready && device.turn === 'off'" class="text-xs text-gray-500">
-          Připraveno k vysávání
+        <span v-show="!device.state.ready && device.turn === 'off'" class="text-xs text-gray-500">
+          Úklid bude možný za chvíli.
         </span>
-        <div v-show="showCleaningTime" class="text-sm text-gray-900 font-semibold mt-3">
-          <fa icon="stopwatch" size="lg" class="pr-1" />
-          {{ device.state.cleaningTime | duration }}
-        </div>
-        <div v-show="device.state.expireTime" class="text-sm text-gray-900 font-semibold mt-3">
+        <span v-if="device.state.expireTime" class="text-xs text-gray-500">
           Úloha bude zrušena za
           <date-distance-strict :value="device.state.expireTime" :refresh-rate="1000" unit="minute" />
-        </div>
-        <div v-show="alertMessage" class="text-sm text-red-700 font-semibold mt-3">
+        </span>
+        <span v-show="showCleaningTime" class="text-sm text-gray-900 font-semibold mt-3">
+          <fa icon="stopwatch" size="lg" class="pr-1" />
+          {{ device.state.cleaningTime | duration }}
+        </span>
+        <span v-show="alertMessage" class="text-sm text-red-700 font-semibold mt-3">
           <fa icon="exclamation-triangle" size="lg" class="pr-1" />
           {{ alertMessage }}
-        </div>
+        </span>
       </div>
       <div class="flex flex-row w-full md:w-3/4 lg:w-7/12 xl:w-8/12 px-4 mt-auto mb-6 justify-center">
         <button
