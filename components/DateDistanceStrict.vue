@@ -1,24 +1,23 @@
 <template>
-  <span>{{ date | distance(now) }}</span>
+  <span>{{ date | duration(now, unit) }}</span>
 </template>
 
 <script>
-import { formatDistance, isValid, parseISO } from 'date-fns'
+import { formatDistanceStrict, isValid, parseISO } from 'date-fns'
 import csLocale from 'date-fns/locale/cs'
 
 export default {
   filters: {
-    distance (date, baseDate) {
+    duration (date, baseDate, unit) {
       if (!isValid(date)) { return 'nikdy' }
 
-      return formatDistance(date, baseDate, {
-        addSuffix: true,
-        includeSeconds: true,
+      return formatDistanceStrict(date, baseDate, {
+        unit,
         locale: csLocale
       })
     }
   },
-  props: ['value', 'refreshRate'],
+  props: ['value', 'refreshRate', 'unit'],
   data () {
     return {
       now: new Date(),

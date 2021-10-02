@@ -25,6 +25,7 @@ export default {
     'faStopwatch',
     'faHourglass',
     'faExclamationCircle',
+    'faExclamationTriangle',
     'faBolt',
     'faRoute'
   ],

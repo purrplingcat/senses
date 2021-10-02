@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form class="px-6 py-3">
     <div class="flex flex-col w-full py-3">
       <label class="text-sm text-gray-600 font-semibold mb-1">Jas</label>
       <slider height="0.75rem" dot-size="24" :contained="true" />
@@ -192,7 +192,7 @@
         value="a"
       />
     </div>
-  </div>
+  </form>
 </template>
 
 <script>

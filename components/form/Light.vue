@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form class="px-6 py-3">
     <div class="flex">
       <svg-icon name="lightbulb" class="w-24 h-24 mx-auto" />
     </div>
@@ -35,7 +35,7 @@
       <label class="text-sm text-gray-600 font-semibold mb-1">Režim</label>
       <Mode :data="data" @update="update" />
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
