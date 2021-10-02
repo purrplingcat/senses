@@ -129,10 +129,13 @@
       </content>
       <ModalForm
         v-if="formVisible"
-        :title="currentDevice.title"
         @dismiss="formVisible = false"
       >
-        <div slot="header" class="flex flex-row px-2 space-x-3">
+        <span slot="title" :class="{'line-through': !currentDevice.available}">
+          {{ currentDevice.title }}
+        </span>
+        <div slot="header" class="flex flex-row items-center px-2 space-x-3">
+          <span v-if="!currentDevice.available" class="text-xs px-2 py-1 rounded-sm bg-red-100 text-red-700 tracking-wider uppercase">Nedostupné</span>
           <button
             type="button"
             title="Obnovit data ze zařízení"

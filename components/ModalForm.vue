@@ -6,7 +6,7 @@
         class="flex flex-row justify-between mt-3 px-3 items-baseline border-b border-gray-300"
       >
         <h3 class="font-bold text-gray-700 leading-relaxed mt-2 mb-4">
-          {{ title }}
+          <slot name="title" />
         </h3>
         <slot name="header" />
       </div>
