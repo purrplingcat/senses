@@ -36,10 +36,7 @@ export default {
 
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: process.env.APOLLO_HTTP || 'http://localhost:8080/graphql',
-        wsEndpoint: process.env.APOLLO_WS || 'ws://localhost:8080/graphql'
-      }
+      default: '@/apollo.config.js'
     },
     watchLoading: '@/plugins/watch-loading.js'
   },
