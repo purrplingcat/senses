@@ -48,6 +48,10 @@ export default {
   publicRuntimeConfig: {
     axios: {
       browserBaseURL: process.env.API_URL || 'http://localhost:8080'
+    },
+    apollo: {
+      httpEndpoint: process.env.APOLLO_HTTP,
+      wsEndpoint: process.env.APOLLO_WS
     }
   },
 

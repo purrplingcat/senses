@@ -1,8 +1,9 @@
-export default function () {
+export default function (context) {
+  const config = context.$config.apollo
   const wsOrigin = location.origin.replace('http', 'ws')
 
   return {
-    httpEndpoint: process.env.APOLLO_HTTP || `${location.origin}/graphql`,
-    wsEndpoint: process.env.APOLLO_WS || `${wsOrigin}/graphql`
+    httpEndpoint: config.httpEndpoint || `${location.origin}/graphql`,
+    wsEndpoint: config.wsEndpoint || `${wsOrigin}/graphql`
   }
 }
